@@ -23,7 +23,7 @@ const userRouter = require("./routes/Users");
 app.use("/auth", userRouter);
 
 const likesRouter = require("./routes/Likes");
-app.use("/likes", likesRouter);
+app.use("/likes", likesRouter);k
 
 db.sequelize.sync().then(() => {
   const PORT = process.env.PORT || 3001;
