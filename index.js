@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 
 // Load environment variables from .env file
 dotenv.config();
-// "start": "nodemon index.js"
 const app = express();
 
 app.use(express.json());
@@ -24,11 +23,24 @@ app.use("/auth", userRouter);
 
 const likesRouter = require("./routes/Likes");
 app.use("/likes", likesRouter);
-k;
 
 db.sequelize.sync().then(() => {
   const PORT = process.env.PORT || 3001;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+  const DATABASE_HOST = process.env.DATABASE_HOST;
+  const DATABASE_USER = process.env.DATABASE_USER;
+  const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
+  const DATABASE_DBNAME = process.env.DATABASE_DBNAME;
+
+  // Replace your Sequelize connection setup with environment variables
+  db.sequelize
+    .authenticate()
+    .then(() => {
+      console.log("Database connection has been established successfully.");
+      app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+      });
+    })
+    .catch((err) => {
+      console.error("Unable to connect to the database:", err);
+    });
 });
