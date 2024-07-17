@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 
 // Load environment variables from .env file
 dotenv.config();
-
+// "start": "nodemon index.js"
 const app = express();
 
 app.use(express.json());
@@ -23,7 +23,8 @@ const userRouter = require("./routes/Users");
 app.use("/auth", userRouter);
 
 const likesRouter = require("./routes/Likes");
-app.use("/likes", likesRouter);k
+app.use("/likes", likesRouter);
+k;
 
 db.sequelize.sync().then(() => {
   const PORT = process.env.PORT || 3001;
