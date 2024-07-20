@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 
 const { validateToken } = require("../middlewares/AuthMiddleware");
-const { where } = require("sequelize");
 
 router.post("/", async (req, res) => {
   const { userName, passWord } = req.body;
